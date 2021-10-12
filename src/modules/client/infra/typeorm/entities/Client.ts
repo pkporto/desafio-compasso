@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import {City} from '../../../../city/infra/typeorm/entities/City'
 
 @Entity("Clients")
 export class Client{
@@ -14,8 +15,9 @@ export class Client{
     @Column()
     age!: number;
 
-    @Column()
-    city!: string; 
+    @ManyToOne(() => City, (city) => city.clients)
+    @JoinColumn({ name: "user_id", referencedColumnName: "id" })
+    city!: City;
 
     constructor(params:{
       name: string;

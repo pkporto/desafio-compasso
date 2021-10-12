@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Client } from "../../../../../modules/client/infra/typeorm/entities/Client";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("Clients")
-export class Client{
+@Entity("Cities")
+export class City{
     @PrimaryGeneratedColumn("increment")
     id!: number;
 
@@ -10,6 +11,11 @@ export class Client{
 
     @Column()
     state!: string;
+
+    @OneToMany(() => Client, (client) => client.city, {
+      cascade: true,
+    })
+    clients!: Client[];
 
     constructor(params:{
       name: string;
