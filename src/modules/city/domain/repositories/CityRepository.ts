@@ -10,20 +10,18 @@ async getAll(): Promise<City[]> {
 
     return cities;
 }
-async findByState(state: string): Promise<City[] | undefined> {
+async findByState(state: string): Promise<City[]> {
     const cities = await getRepository(City).find({
         where:{
             state 
         }
     })
 
-    if(!cities){
-        throw new AppError('Cidade não encontrada.', 404);
-    }
+   
 
     return cities;
 }
-async findByName(name: string): Promise<City[] | undefined> {
+async findByName(name: string): Promise<City[]> {
     const cities = await getRepository(City).find({
         where:{
             name: Like(`%${name}%`)
