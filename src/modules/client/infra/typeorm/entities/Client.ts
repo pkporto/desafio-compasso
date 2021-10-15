@@ -15,7 +15,9 @@ export class Client{
     @Column()
     age!: number;
 
-    @ManyToOne(() => City, (city) => city.clients)
+    @ManyToOne(() => City, (city) => city.clients, {
+      cascade: true,
+    })
     @JoinColumn({ name: "city_id", referencedColumnName: "id" })
     city!: City;
 

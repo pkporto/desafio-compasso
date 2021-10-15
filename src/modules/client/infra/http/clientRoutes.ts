@@ -14,7 +14,7 @@ clientsRoutes.post("/createClient", (req: Request, res: Response) => {
 //   return getAllCitiesController.handle(req, res);
 // });
 
-clientsRoutes.get("/getClientByName", (req: Request, res: Response) => {
+clientsRoutes.get("/getClientByName/:name", (req: Request, res: Response) => {
   return getClientByNameController.handle(req, res);
 });
 

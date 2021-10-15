@@ -12,9 +12,7 @@ export class City{
     @Column()
     state!: string;
 
-    @OneToMany(() => Client, (client) => client.city, {
-      cascade: true,
-    })
+    @OneToMany(() => Client, (client) => client.city)
     clients!: Client[];
 
     constructor(params:{
