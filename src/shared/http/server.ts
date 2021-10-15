@@ -5,6 +5,7 @@ import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import AppError from "../helpers/AppError";
 import { citiesRoutes } from "../../modules/city/infra/http/citiesRoutes";
+import { clientsRoutes } from "../../modules/client/infra/http/clientRoutes";
 
 
 const app = express();
@@ -14,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(citiesRoutes);
-
+app.use(clientsRoutes);
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof AppError) {

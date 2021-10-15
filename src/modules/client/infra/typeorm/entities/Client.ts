@@ -22,7 +22,7 @@ export class Client{
     constructor(params:{
       name: string;
       birth: Date;
-      age: number;
+      age?: number;
       city: string;  
     }){
         Object.assign(this, params);
