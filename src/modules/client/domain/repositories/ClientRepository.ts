@@ -22,4 +22,26 @@ async findByName(name: string): Promise<Client[]> {
 
     return clients;
 }
+
+async findById(id: number): Promise<Client | undefined> {
+    const client = await getRepository(Client).findOne({
+        where:{
+            id
+        }
+    })
+
+    if(!client){
+        throw new AppError('Cliente não encontrado(a).', 404);
+    }
+
+    return client;
+}
+
+
+async removeById(id: number) {
+    await getRepository(Client).delete({
+       id
+    })
+
+}
 }
