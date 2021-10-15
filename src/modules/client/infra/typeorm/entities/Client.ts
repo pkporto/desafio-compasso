@@ -16,14 +16,14 @@ export class Client{
     age!: number;
 
     @ManyToOne(() => City, (city) => city.clients)
-    @JoinColumn({ name: "user_id", referencedColumnName: "id" })
+    @JoinColumn({ name: "city_id", referencedColumnName: "id" })
     city!: City;
 
     constructor(params:{
       name: string;
       birth: Date;
       age?: number;
-      city: string;  
+      city?: string;  
     }){
         Object.assign(this, params);
     }

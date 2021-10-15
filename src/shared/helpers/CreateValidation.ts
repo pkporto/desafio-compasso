@@ -21,6 +21,10 @@ const validateCitiesByState = Joi.object({
   state: Joi.string().required()
 });
 
+const validateClientsByName = Joi.object({
+  name: Joi.string().required()
+});
+
 
 
 
@@ -28,5 +32,6 @@ export {
     validateCity,
     validateClient,
     validateCityByName,
-    validateCitiesByState
+    validateCitiesByState,
+    validateClientsByName
 };

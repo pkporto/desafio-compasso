@@ -2,17 +2,21 @@ import { Client } from "../../../modules/client/infra/typeorm/entities/Client";
 import { getCustomRepository } from "typeorm";
 import { ClientRepository } from "../domain/repositories/ClientRepository";
 import { ICreateClientDTO } from "./CreateClientDTO";
+import {CityRepository} from '../../city/domain/repositories/CityRepository';
 
 export class CreateClientUseCase {
     constructor(private clientRepository: ClientRepository){}
     async execute(data: ICreateClientDTO){
-        // const clientRepository = await this.clientRepository;
+         const cityRepository = getCustomRepository(CityRepository);
+
+         const city = await cityRepository.findByName(data.city);
 
         // const age = data.birth; 
 
        const age = this.calculate_age(data.birth);
 
         const user = new Client(data);
+        user.city = city[0];
         user.age = age;
         this.clientRepository.save(user);
     }
