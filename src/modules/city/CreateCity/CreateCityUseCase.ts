@@ -1,12 +1,12 @@
 import { City } from "../../../modules/city/infra/typeorm/entities/City";
 import { getCustomRepository } from "typeorm";
-import { CityRepository } from "../domain/repositories/CityRepository";
 import { ICreateCityDTO } from "./CreateCityDTO";
+import { ICityRepository } from "../domain/models/ICityRepository";
 
 export class CreateCityUseCase {
-    constructor(private cityRepository: CityRepository){}
-    async execute(data: ICreateCityDTO){
+    constructor(private cityRepository: ICityRepository){}
+    async execute(data: ICreateCityDTO): Promise<City>{
         const user = new City(data);
-        this.cityRepository.save(user);
+        return await this.cityRepository.save(user);
     }
 }
