@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    entrypoint: .docker/entrypoint.sh
+    container_name: api-compasso
+    ports:
+      - "8181:8181"
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - db
+
+  db:
+    build: .docker/postgres
+    container_name: api-compasso-db
+    restart: always
+    tty: true
+    ports:
+      - "5433:5432"
+    volumes:
+      - .docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=desafio_compasso
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_pg
+    tty: true
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "8989:80"
+    depends_on:
+      - db

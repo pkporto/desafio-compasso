@@ -34,7 +34,7 @@ async findByName(name: string): Promise<City[]> {
 
     return cities;
 }
-async save(city: City){
-    await getRepository(City).save(city);
+async save(city: City): Promise<City>{
+    return await getRepository(City).save(city);
 }
 }
