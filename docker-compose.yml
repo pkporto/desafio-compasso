@@ -19,8 +19,7 @@ services:
     tty: true
     ports:
       - "5433:5432"
-    volumes:
-      - .docker/dbdata:/var/lib/postgresql/data
+
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=desafio_compasso

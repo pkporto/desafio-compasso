@@ -1,12 +1,9 @@
 import { Router, Request, Response } from "express";
 import {createClientController} from "../../CreateClient/CreateClientIndex";
-// import {getAllCitiesController} from "../../GetAllCities/GetAllCitiesIndex"
 import {getClientByNameController} from "../../GetClientByName/GetClientByNameIndex";
 import {getClientByIdController} from "../../GetClientById/GetClientByIdIndex";
 import {changeClientNameController } from '../../ChangeClientName/ChangeClientNameIndex';
-
 import {removeClientByIdController} from '../../RemoveClientById/RemoveClientByIdIndex';
-// import {getCitiesByStateController} from "../../GetCitiesByState/GetCitiesByStateIndex"
 
 const clientsRoutes = Router();
 
@@ -14,11 +11,7 @@ clientsRoutes.post("/createClient", (req: Request, res: Response) => {
   return createClientController.handle(req, res);
 });
 
-// clientsRoutes.get("/getAllCities", (req: Request, res: Response) => {
-//   return getAllCitiesController.handle(req, res);
-// });
-
-clientsRoutes.get("/clientsgetClientByName/:name", (req: Request, res: Response) => {
+clientsRoutes.get("/clientsName/:name", (req: Request, res: Response) => {
   return getClientByNameController.handle(req, res);
 });
 

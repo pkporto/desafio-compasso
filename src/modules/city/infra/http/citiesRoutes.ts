@@ -14,11 +14,11 @@ citiesRoutes.get("/getAllCities", (req: Request, res: Response) => {
   return getAllCitiesController.handle(req, res);
 });
 
-citiesRoutes.get("/getCityByName", (req: Request, res: Response) => {
+citiesRoutes.get("/cities/:name", (req: Request, res: Response) => {
   return getCityByNameController.handle(req, res);
 });
 
-citiesRoutes.get("/getCitiesByState", (req: Request, res: Response) => {
+citiesRoutes.get("/citiesByState/:state", (req: Request, res: Response) => {
   return getCitiesByStateController.handle(req, res);
 });
 

@@ -2,13 +2,16 @@ import "reflect-metadata";
 import "../typeorm";
 import "express-async-errors";
 import express, { NextFunction, Request, Response } from "express";
+import swaggerUI from "swagger-ui-express"
 import cors from "cors";
 import AppError from "../helpers/AppError";
 import { citiesRoutes } from "../../modules/city/infra/http/citiesRoutes";
 import { clientsRoutes } from "../../modules/client/infra/http/clientRoutes";
 
-
+import swaggerDocs from '../helpers/swagger.json';
 const app = express();
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.use(cors());
 app.use(express.json());

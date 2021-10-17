@@ -1,0 +1,304 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "Api compasso",
+        "description": "---",
+        "termsOfService": "--",
+        "contact": {
+
+            "email": "patrickporto.dev@gmail.com.br",
+            "name": "Patrick Porto",
+            "url": "https://github.com/pkporto"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8181/",
+            "description": "Desenvolvimento"
+        }
+    ],
+    "paths": {
+        "/createClient":{
+            "post":{
+                "summary": "Client",
+                "description": "Logon cliente",
+                "tags": ["Clients"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/Client"
+                            },
+                             "examples":{
+                            "product":{
+                                "value":{
+                                    "name": "Patrick Porto",
+                                    "gender": "M",
+                                    "birth": "1997/01/27",
+                                    "city":"Belém"
+                                }
+                            }
+                        }
+                        }
+                      }
+                },
+                "responses": {
+                    "400":{
+                        "description": "Usuário não existe | Credenciais incorretas"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object"
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/changeClientName":{
+            "post":{
+                "summary": "Change client name",
+                "description": "Change name of the client with given id",
+                "tags": ["Clients"],
+                "security": [{"bearerAuth":[]}],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/Client"
+                            },
+                            "examples": {
+                                "Client":{
+                                    "value":{     
+	                            "id": 1,
+	                            "email": "Outro Nome"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                            "responses": {
+                    "400":{
+                        "description": ""
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object"
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/clients":{
+            "get":{
+                "description": "Get client",
+                "summary": "Get Client",
+                "tags":["Clients"],
+                "parameters":[
+                    {
+                        "name": "id",
+                        "required": true
+                         
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                     "$ref":"#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/clientsName":{
+            "get":{
+                "description": "Get client",
+                "summary": "Get Clients with given name",
+                "tags":["Clients"],
+                "parameters":[
+                    {
+                        "name": "name",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                     "$ref":"#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+          "/clientsDelete":{
+            "delete":{
+                "description": "Buscar todas as notas",
+                "summary": "Usuário irá poder ver todas as notas que já cadastrou",
+                "tags":["Clients"],
+                "parameters": [{
+                    "in":"path",
+                    "required": true
+                }],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                     "$ref":"#/components/schemas/Receipt"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/createCity":{
+            "post":{
+                "summary": "Create city",
+                "description": "Create city",
+                "tags": ["Cities"],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref":"#/components/schemas/City"
+                            },
+                             "examples":{
+                            "product":{
+                                "value":{
+                                    "name": "Belém",
+                                    "state": "Pará"
+                                }
+                            }
+                        }
+                        }
+                      }
+                },
+                "responses": {
+                    "400":{
+                        "description": "Usuário não existe | Credenciais incorretas"
+                    },
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object"
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+
+        "/getAllCities":{
+            "get":{
+                "description": "Get cities",
+                "summary": "Get all cities",
+                "tags":["Cities"],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                     "$ref":"#/components/schemas/City"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cities":{
+            "get":{
+                "description": "Get city",
+                "summary": "Get all cities with given name",
+                "tags":["Cities"],
+                "parameters":[
+                    {
+                        "name": "name",
+                        "required": true,
+                        "in": "path"
+                         
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                     "$ref":"#/components/schemas/Client"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+    },
+    "components": {
+        "schemas": {
+            "Client":{
+                "type": "object",
+                "properties": {
+                    "name":{
+                        "type": "string"
+                    },
+                    "birth":{
+                        "type": "string"
+                    },
+                    "age":{
+                        "type": "number"
+                    }
+                }
+            },
+            "City":{
+                "type": "object",
+                "properties": {
+                    "name":{
+                        "type": "string"
+                    },
+                    "state":{
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

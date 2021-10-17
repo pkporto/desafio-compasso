@@ -8,10 +8,10 @@ export class GetCityByNameController {
 
     async handle(req: Request, res: Response): Promise<Response>{
 
-        const {city} = req.query;
+        const {city} = req.params;
 
         try {
-            await validateCityByName.validateAsync(req.query);
+            await validateCityByName.validateAsync(req.params);
         } catch (error) {
             return res.status(400).json({
                 data: 'Você precisa definir o nome de uma cidade.'
