@@ -1,6 +1,5 @@
 import { CityFakeRepository } from "../domain/repositories/fake/CityFakeRepository";
 import { City } from "../infra/typeorm/entities/City";
-import { CreateCityController } from "./CreateCityController";
 import { CreateCityUseCase } from "./CreateCityUseCase";
 
 describe("Create city", () =>{

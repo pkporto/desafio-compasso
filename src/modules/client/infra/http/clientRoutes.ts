@@ -19,7 +19,7 @@ clientsRoutes.get("/clients/:id", (req: Request, res: Response) => {
   return getClientByIdController.handle(req, res);
 });
 
-clientsRoutes.delete("/clients/:id", (req: Request, res: Response) => {
+clientsRoutes.delete("/clientsDelete/:id", (req: Request, res: Response) => {
   return removeClientByIdController.handle(req, res);
 });
 

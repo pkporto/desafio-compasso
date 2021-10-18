@@ -10,10 +10,13 @@ export class Client{
     name!: string;
 
     @Column()
-    birth!: Date;
+    birth!: string;
 
     @Column()
     age!: number;
+
+    @Column()
+    gender!: string;
 
     @ManyToOne(() => City, (city) => city.clients, {
       cascade: true,
@@ -23,7 +26,7 @@ export class Client{
 
     constructor(params:{
       name: string;
-      birth: Date;
+      birth: string;
       age?: number;
       city?: string;  
     }){

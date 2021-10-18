@@ -39,9 +39,15 @@ async findById(id: number): Promise<Client | undefined> {
 
 
 async removeById(id: number) {
-    await getRepository(Client).delete({
-       id
-    })
+
+    try {
+        await getRepository(Client).delete({
+            id
+         })
+    } catch (error) {
+        throw new AppError('Cliente não encontrado.');
+    }
+   
 
 }
 }

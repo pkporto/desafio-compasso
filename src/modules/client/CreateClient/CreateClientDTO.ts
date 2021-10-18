@@ -1,8 +1,8 @@
-type genderOptions = 'M' | 'F' | 'O';
+
 
 export interface ICreateClientDTO {
     name: string;
-    gender: genderOptions;
-    birth: Date;
+    gender: string;
+    birth: string;
     city: string;
 }

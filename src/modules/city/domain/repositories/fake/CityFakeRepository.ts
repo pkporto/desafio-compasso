@@ -1,14 +1,24 @@
-import { City } from "src/modules/city/infra/typeorm/entities/City";
+import { City } from "../../../../../modules/city/infra/typeorm/entities/City";
 import { ICityRepository } from "../../models/ICityRepository";
 
 export class CityFakeRepository implements ICityRepository{
-    private cities: City[] = [];
+    private cities: City[] = [
+        {
+            "id": 1,
+            "name": "Belém",
+            "state":"Pará",
+            "clients":[]
+        }
+    ];
+
+    
 
     async getAll(): Promise<City[]> {
         return this.cities;
     }
-    findByName(name: string): Promise<City[]> {
-        throw new Error("Method not implemented.");
+    async findByName(name: string): Promise<City[]> {
+        
+        return this.cities;
     }
     findByState(state: string): Promise<City[]> {
         throw new Error("Method not implemented.");
