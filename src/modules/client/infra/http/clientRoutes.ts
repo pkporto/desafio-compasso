@@ -11,7 +11,7 @@ clientsRoutes.post("/createClient", (req: Request, res: Response) => {
   return createClientController.handle(req, res);
 });
 
-clientsRoutes.get("/clientsName/:name", (req: Request, res: Response) => {
+clientsRoutes.get("/clientsName", (req: Request, res: Response) => {
   return getClientByNameController.handle(req, res);
 });
 

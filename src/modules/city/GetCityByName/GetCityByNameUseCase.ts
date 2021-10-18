@@ -5,14 +5,13 @@ import { City } from "../infra/typeorm/entities/City";
 export class GetCityByNameUseCase {
     constructor(private cityRepository: CityRepository){}
 
-    async execute(city: string): Promise<City[]>{
-        const cities = await this.cityRepository.findByName(city);
-        console.log(cities);
+    async execute(city: string): Promise<City>{
+        const cityExists = await this.cityRepository.findByName(city);
 
-        if(cities?.length == 0 ){
+        if(!cityExists){
             throw new AppError('Nenhuma cidade com esse nome.');
         }
 
-        return cities;
+        return cityExists;
     }
 }

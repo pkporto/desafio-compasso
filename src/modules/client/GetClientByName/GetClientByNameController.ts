@@ -8,10 +8,10 @@ export class GetClientsByNameController {
 
     async handle(req: Request, res: Response): Promise<Response>{
 
-        const name = req.params.name;
+        const {name }= req.query;
 
         try {
-            await validateClientsByName.validateAsync(req.params);
+            await validateClientsByName.validateAsync(req.query);
         } catch (error) {
             return res.status(400).json({
                 data: 'Você precisa definir o nome de um cliente.'

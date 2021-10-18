@@ -10,14 +10,14 @@ export class CreateClientUseCase {
 
          const city = await this.cityRepository.findByName(data.city);
 
-        if(city.length == 0 ){
+        if(!city){
             throw new AppError("Cidade não encontrada");
         }
 
        const age = this.calculate_age(data.birth);
 
         const client = new Client(data);
-        client.city = city[0];
+        client.city = city;
         client.age = age;
         this.clientRepository.save(client);
         return client;

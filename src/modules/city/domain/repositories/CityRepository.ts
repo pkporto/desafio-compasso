@@ -21,18 +21,16 @@ async findByState(state: string): Promise<City[]> {
 
     return cities;
 }
-async findByName(name: string): Promise<City[]> {
-    const cities = await getRepository(City).find({
+async findByName(name: string): Promise<City | undefined> {
+    const city = await getRepository(City).findOne({
         where:{
-            name: Like(`%${name}%`)
+            name
         }
     })
 
-    if(!cities){
-        throw new AppError('Cidade não encontrada.', 404);
-    }
+   
 
-    return cities;
+    return city;
 }
 async save(city: City): Promise<City>{
     return await getRepository(City).save(city);

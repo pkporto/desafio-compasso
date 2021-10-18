@@ -14,11 +14,11 @@ const validateCity = Joi.object({
 });
 
 const validateCityByName = Joi.object({
-  city: Joi.string().required()
+  name: Joi.string().required()
 });
 
 const validateCitiesByState = Joi.object({
-  state: Joi.string().required()
+  name: Joi.string().required()
 });
 
 const validateClientsByName = Joi.object({

@@ -250,7 +250,7 @@
                     {
                         "name": "name",
                         "required": true,
-                        "in": "path"
+                        "in": "query"
                          
                     }
                 ],
@@ -261,7 +261,35 @@
                             "application/json":{
                                 "schema":{
                                     "type": "object",
-                                     "$ref":"#/components/schemas/Client"
+                                     "$ref":"#/components/schemas/City"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/citiesByState":{
+            "get":{
+                "description": "Get city",
+                "summary": "Get all cities with given state",
+                "tags":["Cities"],
+                "parameters":[
+                    {
+                        "name": "name",
+                        "required": true,
+                        "in": "query"
+                         
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                     "$ref":"#/components/schemas/City"
                                 }
                             }
                         }
